@@ -1,4 +1,3 @@
-
 #define PIN_LED 33
 #define MAXBYTE 200  //最大文字数
 
@@ -115,8 +114,10 @@ void loop() {
         Keido = keido;
         digitalWrite(PIN_LED, HIGH);
       }
-    } else {
+    } 
+    else {
       digitalWrite(PIN_LED, LOW);
     }
   }
 }
+
