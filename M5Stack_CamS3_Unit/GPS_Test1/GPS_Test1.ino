@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include <WiFi.h>
 #include <esp_wifi.h>
-#include <esp_bt.h>
-#include <esp_bt_main.h>
+// #include <esp_bt.h>
+// #include <esp_bt_main.h>
 
-#define LED_PIN 14
+#define GPIO_LED 14
 #define MAXBYTE 200  //最大文字数
 
 byte GPSdata[MAXBYTE];
@@ -46,12 +46,17 @@ void setup() {
   esp_wifi_deinit();  // 完全にWiFiを無効化する
   Serial.println("WiFiを無効化しました");
 
-  // Bluetoothの無効化
-  esp_bluedroid_disable();      // Bluedroidを無効化する
-  esp_bluedroid_deinit();       // Bluedroidを初期化解除する
-  esp_bt_controller_disable();  // BTコントローラを無効化する
-  esp_bt_controller_deinit();   // BTコントローラを初期化解除する
-  Serial.println("Bluetoothを無効化しました");
+  // // Bluetoothの無効化
+  // esp_bluedroid_disable();      // Bluedroidを無効化する
+  // esp_bluedroid_deinit();       // Bluedroidを初期化解除する
+  // esp_bt_controller_disable();  // BTコントローラを無効化する
+  // esp_bt_controller_deinit();   // BTコントローラを初期化解除する
+  // Serial.println("Bluetoothを無効化しました");
+
+  //青色LEDをOUTPUTに設定
+  pinMode(GPIO_LED, OUTPUT);
+  //LED消去
+  digitalWrite(GPIO_LED, HIGH);
 
   //GPS_Init();
   //GPS_Select();
@@ -81,8 +86,14 @@ void loop() {
       if (ido != 36 && keido != 136 && ido != 0 && keido != 0) {
         Ido = ido;
         Keido = keido;
+
+        //LED
+        digitalWrite(GPIO_LED, LOW);
+        delay(250);
       }
     } else {
+      //LED消去
+      digitalWrite(GPIO_LED, HIGH);
     }
   }
 }
@@ -117,7 +128,7 @@ void GPS_Init() {
   delay(100);  // 送信後の待機時間
 
   // Serial1を19200bpsに変更
-  Serial2.end();                           // 一旦終了
+  Serial2.end();                             // 一旦終了
   Serial2.begin(19200, SERIAL_8N1, 44, 43);  //G1->RXD, G3->TXD
 }
 
