@@ -22,11 +22,11 @@ void setup() {
   delay(1000);
   Serial.println("GPS Test");
 
-  // // 現在のCPU周波数を表示
-  // int cpuClock = getCpuFrequencyMhz();
-  // Serial.print("CPU Frequency: ");
-  // Serial.print(cpuClock);
-  // Serial.println(" MHz");
+  // 現在のCPU周波数を表示
+  int cpuClock = getCpuFrequencyMhz();
+  Serial.print("CPU Frequency: ");
+  Serial.print(cpuClock);
+  Serial.println(" MHz");
   // if (cpuClock >= 80) {
   //   // CPU周波数を変更
   //   setCpuFrequencyMhz(40);
