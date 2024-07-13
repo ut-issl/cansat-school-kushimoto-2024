@@ -56,5 +56,5 @@ void loop() {
   Serial.print(",btm:-20,top:20");
   Serial.println("");
 
-  delay(50);
+  delay(100);
 }

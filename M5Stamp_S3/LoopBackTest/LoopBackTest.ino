@@ -15,11 +15,11 @@ void setup() {
 void loop() {
   if (Serial.available() > 0) {
     int receivedByte = Serial.read();
-    Serial1.write(receivedByte);
+    Serial2.write(receivedByte);
   }
 
-  if (Serial1.available() > 0) {
-    int receivedByte = Serial1.read();
+  if (Serial2.available() > 0) {
+    int receivedByte = Serial2.read();
     Serial.write(receivedByte);
   }
   delay(10);

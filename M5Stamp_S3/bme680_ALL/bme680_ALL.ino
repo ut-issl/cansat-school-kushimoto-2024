@@ -24,8 +24,8 @@
 
 Adafruit_BME680 bme(&Wire);
 
-//#define SEALEVELPRESSURE_HPA 1013.25
-#define SEALEVELPRESSURE_HPA 1009.0
+#define SEALEVELPRESSURE_HPA 1013.25
+//#define SEALEVELPRESSURE_HPA 1009.0
 
 void setup() {
   Serial.begin(115200);
@@ -43,10 +43,16 @@ void setup() {
   }
 
   // Set up oversampling and filter initialization
-  bme.setTemperatureOversampling(BME680_OS_8X);
+  bme.setTemperatureOversampling(BME680_OS_2X);
   bme.setHumidityOversampling(BME680_OS_2X);
-  bme.setPressureOversampling(BME680_OS_4X);
-  bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
+  bme.setPressureOversampling(BME680_OS_2X);
+  //bme.setTemperatureOversampling(BME680_OS_NONE);
+  //bme.setHumidityOversampling(BME680_OS_NONE);
+  //bme.setPressureOversampling(BME680_OS_NONE);
+
+  //bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
+  bme.setIIRFilterSize(BME680_FILTER_SIZE_1);
+  
   //ガスセンサをオフにする
   bme.setGasHeater(0, 0);  // 320*C for 150 ms
 }
@@ -81,7 +87,7 @@ void loop() {
   Serial.println(" m");
 
   Serial.println();
-  delay(1000);
+  delay(10);
 }
 
 float calculateAltitude(float pressure, float temperature) {
