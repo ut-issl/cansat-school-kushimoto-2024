@@ -27,7 +27,7 @@ namespace Utility
     template <class... Args>
     void SDCard::write(Args... args)
     {
-        write_impl(file, args...);
+        write_impl(args...);
     }
 
     template <class Last>
