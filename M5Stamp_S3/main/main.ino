@@ -1,7 +1,6 @@
 #include <Adafruit_BME680.h>
 #include <Adafruit_BNO055.h>
 #include <Adafruit_Sensor.h>
-#include <CanSatSchool.h>
 #include <S11059.h>
 #include <utility/imumaths.h>
 #include <Wire.h>
@@ -90,23 +89,8 @@ void loop(void)
     bno.getEvent(&angVelocityData, Adafruit_BNO055::VECTOR_GYROSCOPE);
     bno.getEvent(&linearAccelData, Adafruit_BNO055::VECTOR_LINEARACCEL);
 
-    logger.info("ac-X:");
-    logger.info(linearAccelData.acceleration.x);
-    logger.info(",");
-    logger.info("ac-Y:");
-    logger.info(linearAccelData.acceleration.y);
-    logger.info(",");
-    logger.info("ac-Z:");
-    logger.info(linearAccelData.acceleration.z);
-    logger.info(",");
-    logger.info("gy-X:");
-    logger.info(angVelocityData.gyro.x);
-    logger.info(",");
-    logger.info("gy-Y:");
-    logger.info(angVelocityData.gyro.y);
-    logger.info(",");
-    logger.info("gy-Z:");
-    logger.info(angVelocityData.gyro.z);
+    logger.info("[Acc] (", linearAccelData.acceleration.x, ",", linearAccelData.acceleration.y, ",", linearAccelData.acceleration.z, ")");
+    logger.info("[Gyro] (", angVelocityData.gyro.x, ",", angVelocityData.gyro.y, ",", angVelocityData.gyro.z, ")");
 
 
     // if (!bme.performReading()) {
@@ -125,16 +109,10 @@ void loop(void)
             if (bme.endReading()) {
                 IsBME680_Reading = false;
 
-                logger.info(bme.temperature);
-                logger.info(",");
-                logger.info(bme.pressure / 100.0);
-                logger.info(",");
-                logger.info(bme.humidity);
-                logger.info(",");
-                // logger.info(bme.readAltitude(SEALEVELPRESSURE_HPA));
-                // logger.info(",");
-                logger.info(calculateAltitude(bme.pressure, bme.temperature));
-                logger.info();
+                logger.info("[Temperature]", bme.temperature, "[degC]");
+                logger.info("[Pressure]", bme.pressure / 100.0, "[hPa]");
+                logger.info("[Humidity]", bme.humidity, "[%]");
+                logger.info("[Altitude]", calculateAltitude(bme.pressure, bme.temperature), "[m]");
             }
         }
     }
@@ -146,17 +124,7 @@ void loop(void)
 
     // センサのデータ用レジスタ(赤、緑、青、赤外)をまとめてリード
     if (colorSensor.update()) {
-        logger.info("Blue:");
-        logger.info(colorSensor.getBlue());
-        logger.info(",");
-        logger.info("Red:");
-        logger.info(colorSensor.getRed());
-        logger.info(",");
-        logger.info("Green:");
-        logger.info(colorSensor.getGreen());
-        logger.info(",");
-        logger.info("IR:");
-        logger.info(colorSensor.getIR());
+        logger.info("[Color] (R, G, B, IR) = (", colorSensor.getBlue(), ",", colorSensor.getRed(), ",", colorSensor.getGreen(), ",", colorSensor.getIR(), ")");
     }
 
     delay(DELAY_MS);
