@@ -5,7 +5,7 @@
 #include <utility/imumaths.h>
 #include <Wire.h>
 
-#include "utility/logger.hpp"
+#include "src/utility/logger.hpp"
 
 #define SDA_PIN 13
 #define SCL_PIN 15
@@ -37,13 +37,13 @@ void setup(void)
 
     if (!bno.begin()) {
         /* There was a problem detecting the BNO055 ... check your connections */
-        logger.info("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
+        logger.error("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
         while (1)
             ;
     }
 
     if (!bme.begin()) {
-        logger.info("Could not find a valid BME680 sensor, check wiring!");
+        logger.error("Could not find a valid BME680 sensor, check wiring!");
         while (1)
             ;
     }
@@ -72,12 +72,12 @@ void setup(void)
 
     // ADCリセット、スリープ解除
     if (!colorSensor.reset()) {
-        logger.info("reset failed");
+        logger.error("reset failed");
     }
 
     // ADCリセット解除、バスリリース
     if (!colorSensor.start()) {
-        logger.info("start failed");
+        logger.error("start failed");
     }
     delay(1000);
     logger.info("All of Sensors Test");
@@ -94,7 +94,7 @@ void loop(void)
 
 
     // if (!bme.performReading()) {
-    //   logger.info("Failed to perform reading :(");
+    //   logger.error("Failed to perform reading :(");
     //   return;
     // }
     if (!IsBME680_Reading) {
