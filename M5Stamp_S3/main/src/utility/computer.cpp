@@ -5,7 +5,7 @@
 namespace Utility
 {
 
-    bool Computer::init(const unsigned long& baud_rate = 9600, const unsigned long& timeout_ms = 10000)
+    bool Computer::init(const unsigned long& baud_rate, const unsigned long& timeout_ms)
     {
         Serial.begin(baud_rate);
         unsigned long start = millis();

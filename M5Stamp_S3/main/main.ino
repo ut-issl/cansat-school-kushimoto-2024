@@ -30,7 +30,7 @@ void setup(void)
     logger.enableComputer();
 
     // SDカードへのログ記録を有効化する（SDカードを使わない場合は不要）
-    logger.enableSDCard(file_name);
+    logger.enableSDCard();
 
     // SDAピンとSCLピンを指定
     Wire.begin(SDA_PIN, SCL_PIN);
