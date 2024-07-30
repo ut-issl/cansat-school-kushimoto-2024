@@ -24,4 +24,9 @@ namespace Utility
         return true;
     }
 
+    void SDCard::write_impl(float last)
+    {
+        Serial2.println(last, 6);
+    }
+
 }  // namespace Utility

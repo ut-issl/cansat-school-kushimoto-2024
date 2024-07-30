@@ -52,7 +52,7 @@ namespace Utility
         Printer::print(args...);
     }
 
-    void Printer::print_impl(float last)
+    inline void Printer::print_impl(float last)
     {
         Serial.println(last, 6);
     }

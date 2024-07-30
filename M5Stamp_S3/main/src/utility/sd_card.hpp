@@ -48,11 +48,6 @@ namespace Utility
         write_impl(args...);
     }
 
-    void SDCard::write_impl(float last)
-    {
-        Serial2.println(last, 6);
-    }
-
     template <class... Args>
     void SDCard::write_impl(float head, Args... args)
     {
