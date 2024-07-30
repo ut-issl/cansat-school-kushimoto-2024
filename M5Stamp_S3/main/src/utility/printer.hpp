@@ -19,6 +19,10 @@ namespace Utility
         static void print_impl(Last last);
         template <class Head, class... Args>
         static void print_impl(Head head, Args... args);
+
+        static void print_impl(float last);
+        template <class... Args>
+        static void print_impl(float head, Args... args);
     };
 
     template <class... Args>
@@ -46,6 +50,19 @@ namespace Utility
     void print(Args... args)
     {
         Printer::print(args...);
+    }
+
+    void Printer::print_impl(float last)
+    {
+        Serial.println(last, 6);
+    }
+
+    template <class... Args>
+    void Printer::print_impl(float head, Args... args)
+    {
+        Serial.print(head, 6);
+        Serial.print(F(" "));
+        print_impl(args...);
     }
 
 }  // namespace Utility

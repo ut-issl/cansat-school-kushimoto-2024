@@ -22,6 +22,10 @@ namespace Utility
         static void write_impl(Last last);
         template <class Head, class... Args>
         static void write_impl(Head head, Args... args);
+
+        static void write_impl(float last);
+        template <class... Args>
+        static void write_impl(float head, Args... args);
     };
 
     template <class... Args>
@@ -40,6 +44,19 @@ namespace Utility
     void SDCard::write_impl(Head head, Args... args)
     {
         Serial2.print(head);
+        Serial2.print(F(" "));
+        write_impl(args...);
+    }
+
+    void SDCard::write_impl(float last)
+    {
+        Serial2.println(last, 6);
+    }
+
+    template <class... Args>
+    void SDCard::write_impl(float head, Args... args)
+    {
+        Serial2.print(head, 6);
         Serial2.print(F(" "));
         write_impl(args...);
     }
