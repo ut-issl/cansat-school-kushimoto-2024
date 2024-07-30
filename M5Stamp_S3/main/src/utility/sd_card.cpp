@@ -12,9 +12,9 @@ namespace Utility
     {
         logger.info(F("[SDCard] Initializing..."));
 
-        Serial.begin(9600, SERIAL_8N1, txd_pin, rxd_pin);
+        Serial2.begin(9600, SERIAL_8N1, txd_pin, rxd_pin);
         unsigned long start = millis();
-        while (!Serial) {
+        while (!Serial2) {
             if (millis() - start > timeout_ms) {
                 return false;
             }

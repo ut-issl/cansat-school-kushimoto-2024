@@ -45,5 +45,3 @@ namespace Utility
     Logger logger;
 
 }  // namespace Utility
-
-using Utility::logger;
