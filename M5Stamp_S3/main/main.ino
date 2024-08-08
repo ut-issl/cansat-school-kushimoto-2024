@@ -38,14 +38,12 @@ void setup(void)
     if (!bno.begin()) {
         /* There was a problem detecting the BNO055 ... check your connections */
         logger.error("Ooops, no BNO055 detected ... Check your wiring or I2C ADDR!");
-        while (1)
-            ;
+        logger.warning("The program will continue, but the BNO055 sensor will not work.");
     }
 
     if (!bme.begin()) {
         logger.error("Could not find a valid BME680 sensor, check wiring!");
-        while (1)
-            ;
+        logger.warning("The program will continue, but the BME680 sensor will not work.");
     }
     // Set up oversampling and filter initialization
     bme.setTemperatureOversampling(BME680_OS_1X);
