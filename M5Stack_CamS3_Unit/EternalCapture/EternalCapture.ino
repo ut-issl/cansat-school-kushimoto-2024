@@ -69,7 +69,7 @@ void setup() {
   //digitalWrite(LED_GPIO_NUM, LOW);
 }
 
-bool IsCaptuer = true;
+bool IsCaptuer = false;
 void loop() {
   digitalWrite(GPIO_LED, LOW);
   delay(500);

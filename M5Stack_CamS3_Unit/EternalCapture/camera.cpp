@@ -35,6 +35,7 @@ bool cameraInit() {
   //config.frame_size = FRAMESIZE_XGA;
   config.jpeg_quality = 12;  // JPEG品質を調整
   config.fb_count = 2;
+  config.fb_location = CAMERA_FB_IN_DRAM;
   config.grab_mode = CAMERA_GRAB_LATEST;
 
   while (true) {
