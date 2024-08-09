@@ -4,4 +4,5 @@
 
 以下のファイルがメインプログラムになります。
 
-- M5Stamp_S3/main/main.ino
+- M5Stamp_S3/main/main.ino: メインのマイコンのプログラム
+- M5Stack_CamS3_Unit/AviRecorder_v3/AviRecorder_v3.ino: カメラ内のマイコンのプログラム
